@@ -208,7 +208,7 @@
       width: 64px;
       height: 64px;
       bottom: 0px;
-      left: calc(100% / 3 + 100px);
+      left: calc(100% / 2.5 + 100px);
       .iconfont {
         color: #fff;
         font-size: 24px;
@@ -230,9 +230,8 @@
       overflow-x: hidden;
       box-sizing: border-box;
       .item {
-        max-width: 514px;
         min-width: 300px;
-        width: calc(100% / 3 -100px);
+        width: calc(100% / 3 - 100px);
         display: inline-block;
         margin-right: 100px;
         vertical-align: top;
@@ -262,10 +261,8 @@
       .one {
         box-shadow: 0px 2px 6px 2px rgba(177, 174, 174, 0.2);
         background-color: #fff;
-        width:calc(100% / 2.5 );
-        .imgs {
-          height: 600px;
-        }
+        width: calc(100% / 2.5);
+        position: relative;
       }
     }
   }
