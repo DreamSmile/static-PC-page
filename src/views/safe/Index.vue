@@ -623,6 +623,7 @@
             background-color: #fff;
           }
         }
+        
         .more {
           vertical-align: middle;
           font-size: 16px;
