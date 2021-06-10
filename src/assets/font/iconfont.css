@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2600755 */
-  src: url('iconfont.woff2?t=1623220918811') format('woff2'),
-       url('iconfont.woff?t=1623220918811') format('woff'),
-       url('iconfont.ttf?t=1623220918811') format('truetype');
+  src: url('iconfont.woff2?t=1623314272165') format('woff2'),
+       url('iconfont.woff?t=1623314272165') format('woff'),
+       url('iconfont.ttf?t=1623314272165') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,46 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-flower_circle:before {
+  content: "\e605";
+}
+
+.icon-arrowRight-copy:before {
+  content: "\e68b";
+}
+
+.icon-jiahao:before {
+  content: "\e84f";
+}
+
+.icon-line_aixin:before {
+  content: "\e672";
+}
+
+.icon-gonglve:before {
+  content: "\e73d";
+}
+
+.icon-dianzan:before {
+  content: "\e697";
+}
+
+.icon-labagonggao:before {
+  content: "\e61e";
+}
+
+.icon-dianhua:before {
+  content: "\e617";
+}
+
+.icon-zhifu-yue:before {
+  content: "\e614";
+}
+
+.icon-vip:before {
+  content: "\e60c";
 }
 
 .icon-sousuo:before {

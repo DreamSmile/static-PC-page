@@ -6,6 +6,8 @@ const error = r => require.ensure([], () => r(require('@/views/error/Index')), '
 const travel = r => require.ensure([], () => r(require('@/views/travel/Index')), 'travel');
 const food = r => require.ensure([], () => r(require('@/views/food/Index')), 'food');
 const safe = r => require.ensure([], () => r(require('@/views/safe/Index')), 'safe');
+const game = r => require.ensure([], () => r(require('@/views/game/Index')), 'game');
+
 
 Vue.use(VueRouter)
 
@@ -30,6 +32,10 @@ const routes = [
     path: '/safe',
     name: 'Safe',
     component: safe
+  }, {
+    path: '/game',
+    name: 'Game',
+    component: game
   }
 ]
 
