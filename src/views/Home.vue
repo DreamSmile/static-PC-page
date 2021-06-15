@@ -3,6 +3,7 @@
     <button class="btn" @click="go('travel')">旅游景点官网</button>
     <button class="btn" @click="go('food')">食品官网</button>
     <button class="btn" @click="go('safe')">保险官网</button>
+    <button class="btn" @click="go('game')">奇迹暖暖官网</button>
   </div>
 </template>
 <style scoped lang="less">

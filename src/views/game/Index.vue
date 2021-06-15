@@ -29,10 +29,7 @@
       </div>
     </header>
     <!-- 右边导航栏 -->
-    <div
-      class="siderbar"
-      :style="{ backgroundImage: 'url(' + $imgsrc + 'siderbar_bg.png)' }"
-    >
+    <div class="siderbar" :style="{ backgroundImage: 'url(' + $imgsrc + 'siderbar_bg.png)' }">
       <ul>
         <li @click="go('section1')">新闻资讯</li>
         <li @click="go('section2')">美好之旅</li>
@@ -43,75 +40,86 @@
       </ul>
     </div>
     <!-- 背景大图 -->
-    <div
-      class="bg_01"
-      :style="{ backgroundImage: 'url(' + $imgsrc + 'bg_01.jpg)' }"
-    ></div>
+    <div class="bg_01" :style="{ backgroundImage: 'url(' + $imgsrc + 'bg_01.jpg)' }"></div>
     <!-- 新闻资讯 -->
     <div class="news" id="section1">
-      <div class="new_swipe">
-        <img class="swipe_img" :src="$imgsrc + 'game_news_swipe.jpg'" />
+      <div class="news_swipe">
+        <swiper ref="mySwiper" :options="swiperOptions">
+          <swiper-slide><img :src="$imgsrc + 'bg_01.jpg'" alt="" /></swiper-slide>
+          <swiper-slide><img :src="selImg" alt="" /></swiper-slide>
+          <swiper-slide><img :src="nextImg" alt="" /></swiper-slide>
+        </swiper>
       </div>
+
       <div class="news_el">
         <div class="tabs">
-          <span class="name slected">热门</span>
-          <span class="name">新闻</span>
-          <span class="name">公告</span>
-          <span class="name">活动</span>
+          <span @click="tab(0)" :class="['name', { slected: tabNum == 0 }]">热门</span>
+          <span @click="tab(1)" :class="['name', { slected: tabNum == 1 }]">新闻</span>
+          <span @click="tab(2)" :class="['name', { slected: tabNum == 2 }]">公告</span>
+          <span @click="tab(3)" :class="['name', { slected: tabNum == 3 }]">活动</span>
           <i class="iconfont">&#xe84f;</i>
         </div>
         <div class="list">
-          <ul>
+          <ul v-show="tabNum == 0">
+            <li v-for="(item, i) in 5" :key="i">
+              <span class="list_name">[热门]【公告】奇迹暖暖活动信息公示</span>
+              <span class="list_data">06/09</span>
+            </li>
+          </ul>
+          <ul v-show="tabNum == 1">
             <li v-for="(item, i) in 5" :key="i">
               <span class="list_name">[新闻]【公告】奇迹暖暖活动信息公示</span>
               <span class="list_data">06/09</span>
             </li>
           </ul>
+          <ul v-show="tabNum == 2">
+            <li v-for="(item, i) in 5" :key="i">
+              <span class="list_name">[广告]【公告】奇迹暖暖活动信息公示</span>
+              <span class="list_data">06/09</span>
+            </li>
+          </ul>
+          <ul v-show="tabNum == 3">
+            <li v-for="(item, i) in 5" :key="i">
+              <span class="list_name">[活动]【公告】奇迹暖暖活动信息公示</span>
+              <span class="list_data">06/09</span>
+            </li>
+          </ul>
         </div>
       </div>
-      <div
-        class="code"
-        :style="{ backgroundImage: 'url(' + $imgsrc + 'qr-bg.jpg)' }"
-      >
+      <div class="code" :style="{ backgroundImage: 'url(' + $imgsrc + 'qr-bg.jpg)' }">
         <img class="code_img" :src="$imgsrc + 'qr-code.png'" />
       </div>
     </div>
     <!-- 轮播图三格 -->
-    <div
-      id="section2"
-      class="swipe"
-      :style="{ backgroundImage: 'url(' + $imgsrc + 'bg_03.jpg' }"
-    >
-      <div class="img_box">
+    <div id="section2" class="swipe" :style="{ backgroundImage: 'url(' + $imgsrc + 'bg_03.jpg' }">
+      <!-- <div class="img_box">
         <img :src="preImg" class="pre" />
         <img :src="selImg" class="sel" />
         <img :src="nextImg" class="next" />
         <img :src="$imgsrc + 'btn_r.png'" class="btn_r" />
         <img :src="$imgsrc + 'btn_l.png'" class="btn_l" />
-      </div>
+      </div> -->
+      <swiper :options="threeSOptions" v-if="swipeList.length">
+        <swiper-slide v-for="(item, i) in swipeList" :key="i"><img :src="item.src" /></swiper-slide>
+        <!-- <swiper-slide><img :src="$imgsrc + 'game_swipe2.jpg'" nolazy /></swiper-slide> -->
+        <!-- <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div> -->
+
+      </swiper>
+      <!-- <div class="img_box">
+        <img :src="$imgsrc + 'btn_r.png'" class="btn_r" />
+        <img :src="$imgsrc + 'btn_l.png'" class="btn_l" />
+      </div> -->
+
     </div>
     <!-- 轮播图平滑 -->
-    <div
-      id="section3"
-      class="swipe1"
-      :style="{ backgroundImage: 'url(' + $imgsrc + 'bg_04.jpg' }"
-    >
-      <div class="img_box">
-        <img :src="$imgsrc + '1200-460-3.jpg'" />
-        <div class="icon">
-          <div class="white"></div>
-          <div class="pink"></div>
-          <div class="white"></div>
-          <div class="white"></div>
-        </div>
-      </div>
+    <div id="section3" class="swipe1" :style="{ backgroundImage: 'url(' + $imgsrc + 'bg_04.jpg' }">
+      <swiper ref="mySwiper" :options="swipeOp">
+        <swiper-slide v-for="(item, i) in swipeList1" :key="i"><img :src="item.src" /></swiper-slide>
+      </swiper>
     </div>
     <!-- 游戏攻略 -->
-    <div
-      id="section4"
-      class="strategy"
-      :style="{ backgroundImage: 'url(' + $imgsrc + 'bg_05.jpg' }"
-    >
+    <div id="section4" class="strategy" :style="{ backgroundImage: 'url(' + $imgsrc + 'bg_05.jpg' }">
       <div class="content">
         <div class="con_left">
           <div class="title">
@@ -161,11 +169,7 @@
       </div>
     </div>
     <!-- 同人站 -->
-    <div
-      id="section5"
-      class="fellow"
-      :style="{ backgroundImage: 'url(' + $imgsrc + 'bg_06.jpg' }"
-    >
+    <div id="section5" class="fellow" :style="{ backgroundImage: 'url(' + $imgsrc + 'bg_06.jpg' }">
       <div class="content">
         <div class="f_left">
           <div class="title">
@@ -173,12 +177,7 @@
             <i class="iconfont">&#xe84f;</i>
           </div>
           <div class="box">
-            <div
-              class="item"
-              v-for="(item, i) in 4"
-              :key="i"
-              :style="{ backgroundImage: 'url(' + $imgsrc + '0.png' }"
-            >
+            <div class="item" v-for="(item, i) in 4" :key="i" :style="{ backgroundImage: 'url(' + $imgsrc + '0.png' }">
               <span>《奇迹暖暖》创意视频创意视频创意视频</span>
             </div>
           </div>
@@ -189,16 +188,10 @@
             <i class="iconfont">&#xe84f;</i>
           </div>
           <div class="box">
-            <div
-              class="imgs"
-              :style="{ backgroundImage: 'url(' + $imgsrc + '0.png' }"
-            >
+            <div class="imgs" :style="{ backgroundImage: 'url(' + $imgsrc + '0.png' }">
               <span>[漫画]奇迹暖暖漫画漫画</span>
             </div>
-            <div
-              class="imgs"
-              :style="{ backgroundImage: 'url(' + $imgsrc + '0.png' }"
-            >
+            <div class="imgs" :style="{ backgroundImage: 'url(' + $imgsrc + '0.png' }">
               <span>[漫画]奇迹暖暖漫画漫画</span>
             </div>
             <ul>
@@ -256,16 +249,28 @@
         </div>
       </div>
     </footer>
+    <div class="test"></div>
   </div>
 </template>
 <script>
+import { Swiper, SwiperSlide } from "vue-awesome-swiper";
+import "swiper/swiper-bundle.min.css";
+import SwiperCore, { Autoplay, Navigation } from "swiper";
+SwiperCore.use([Navigation, Autoplay]);
 export default {
-
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
   methods: {
     go(name) {
       this.$nextTick(() => {
         document.getElementById(name).scrollIntoView();
       });
+    },
+    // 新闻区的tab选择
+    tab(num) {
+      this.tabNum = num;
     },
   },
   data() {
@@ -276,9 +281,59 @@ export default {
         { src: this.$imgsrc + "game_swipe3.jpg" },
         { src: this.$imgsrc + "game_swipe4.jpg" },
       ],
+      swipeList1: [
+        { src: this.$imgsrc + "1200-460-3.jpg" },
+        { src: this.$imgsrc + "1200-460-2.jpg" },
+      ],
       preImg: this.$imgsrc + "game_swipe1.jpg",
       selImg: this.$imgsrc + "game_swipe2.jpg",
       nextImg: this.$imgsrc + "game_swipe3.jpg",
+      tabNum: 0,
+      swiperOptions: {
+        direction: "horizontal", //默认horizontal, 水平轮播
+        slidesPerView: "auto", //默认1, 同时显示的slides数量,auto 代表根据轮播图的宽度排列
+        grabCursor: true,
+        centeredSlides: true,
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
+        loop: true, //循环滚动
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      },
+      threeSOptions: {
+        effect: "coverflow",
+        centeredSlides: true,
+        centeredSlidesBounds: true,
+        coverflowEffect: {
+          rotate: 0,
+          stretch: -60,
+          depth: 400,
+          modifier: 1,
+          slideShadows: true,
+        },
+        slidesPerView: "auto",
+        loopedSlides: 5,
+        loop: true,
+        // spaceBetween: 5,
+        // slidePrevClass: "my-slide-visible-pre",
+        // slideClass: "my-slide-class",
+        // slideNextClass: "my-slide-visible-next",
+      },
+      swipeOp: {
+        direction: "horizontal", //默认horizontal, 水平轮播
+        slidesPerView: "auto", //默认1, 同时显示的slides数量,auto 代表根据轮播图的宽度排列
+        grabCursor: true,
+        centeredSlides: true,
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
+        loop: true, //循环滚动
+      },
     };
   },
 };
@@ -401,6 +456,8 @@ export default {
     background-position: 50%;
     background-size: cover;
     width: 100%;
+    min-width: 1200px;
+    margin: 0 auto;
     height: 600px;
     margin-top: 10px;
   }
@@ -412,6 +469,12 @@ export default {
     display: flex;
     justify-content: space-between;
     .news_swipe {
+      width: 525px;
+      height: 300px;
+      /deep/.swiper-container {
+        width: 525px;
+        height: 300px;
+      }
       .swipe_img {
         width: 525px;
       }
@@ -420,6 +483,8 @@ export default {
       flex: 1;
       padding: 15px;
       box-sizing: border-box;
+      // height: 300px;
+      // overflow: hidden;
       .tabs {
         height: 42px;
         border-bottom: 2px solid #d7d7d7;
@@ -448,8 +513,6 @@ export default {
             display: flex;
             justify-content: space-between;
             cursor: pointer;
-            .list_name {
-            }
             .list_data {
               color: #2b2a2a;
             }
@@ -477,11 +540,46 @@ export default {
     width: 100%;
     height: 511px;
     background-position: center;
+    padding-top: 50px;
+    box-sizing: border-box;
+    /deep/.swiper-slide {
+      width: auto;
+    }
+    /deep/.swiper-container-pointer-events {
+      width: 1200px;
+    }
+    /deep/.swiper-slide-active {
+      z-index: 2;
+    }
+
+    /deep/.my-slide-class {
+      z-index: 2;
+    }
+    /deep/.swiper-slide-prev {
+      text-align: center;
+      position: relative;
+      margin: 0 auto;
+      opacity: 0.6;
+      // width: 290px;
+      transform: translateX(290px) scale(0.8);
+      // transform: scale(0.8);
+    }
+    /deep/.swiper-slide-next {
+      text-align: center;
+      position: relative;
+      margin: 0 auto;
+      opacity: 0.6;
+      z-index: 1;
+      transform: translateX(-290px) scale(0.8);
+      // width: 290px;
+      // transform: scale(0.8);
+    }
     .img_box {
       width: 1200px;
       margin: 0 auto;
       position: relative;
       height: 500px;
+
       .pre {
         position: absolute;
         z-index: 1;
@@ -534,7 +632,17 @@ export default {
   .swipe1 {
     width: 100%;
     height: 566px;
+    min-width: 1200px;
+    margin: 0 auto;
     background-position: center;
+    padding-top: 50px;
+    box-sizing: border-box;
+    /deep/.swiper-slide {
+      width: auto;
+    }
+    /deep/.swiper-container-pointer-events {
+      width: 1200px;
+    }
     .img_box {
       width: 1200px;
       height: 460px;
@@ -865,6 +973,8 @@ export default {
   // 页脚
   footer {
     background-color: #8c515d;
+    width: 100%;
+    min-width: 1200px;
     .content {
       min-width: 1050px;
       width: 100%;
