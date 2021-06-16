@@ -273,7 +273,6 @@ export default {
       this.tabNum = num;
     },
   },
-  
   data() {
     return {
       swipeList: [
