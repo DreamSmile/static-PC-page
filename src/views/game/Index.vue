@@ -344,6 +344,7 @@ export default {
   font: normal 14px/1.6em "microsoft yahei", simsun, Tahoma, sans-serif;
   color: #5f3e4f;
   max-width: 1920px;
+  min-width: 1200px;
   margin: 0 auto;
 
   // 顶部
@@ -817,6 +818,7 @@ export default {
     width: 100%;
     height: 642px;
     background-position: center;
+    min-width: 1200px;
     .content {
       width: 1200px;
       background-color: #fff;
@@ -851,11 +853,10 @@ export default {
           margin-top: 20px;
           box-sizing: border-box;
           width: 100%;
-          height: 300px;
           .item {
             width: 176px;
             height: 150px;
-            margin: 0 4px 10px 4px;
+            margin: 0 4px 26px 4px;
             float: left;
             font-size: 0;
             box-sizing: border-box;
@@ -877,6 +878,13 @@ export default {
               width: 176px;
             }
           }
+          .item:after {
+            content: "";
+            clear: both;
+            display: block;
+            height: 0;
+            visibility: hidden;
+          }
         }
       }
       .f_center {
@@ -884,7 +892,6 @@ export default {
           margin-top: 20px;
           box-sizing: border-box;
           width: 100%;
-          height: 300px;
           .imgs {
             width: 176px;
             height: 150px;

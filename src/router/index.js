@@ -7,6 +7,8 @@ const travel = r => require.ensure([], () => r(require('@/views/travel/Index')),
 const food = r => require.ensure([], () => r(require('@/views/food/Index')), 'food');
 const safe = r => require.ensure([], () => r(require('@/views/safe/Index')), 'safe');
 const game = r => require.ensure([], () => r(require('@/views/game/Index')), 'game');
+const lol = r => require.ensure([], () => r(require('@/views/lol/Index')), 'lol');
+
 
 
 Vue.use(VueRouter)
@@ -36,6 +38,10 @@ const routes = [
     path: '/game',
     name: 'Game',
     component: game
+  }, {
+    path: '/lol',
+    name: 'Lol',
+    component: lol
   }
 ]
 
