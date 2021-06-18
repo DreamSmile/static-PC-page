@@ -27,7 +27,7 @@
         <button class="btn">查看详情</button>
       </div>
       <!-- hover nav显示的子导航栏 -->
-      <div :class="['hover_nav',{is_show:show}]" @mouseout="removeNav">
+      <div :class="['hover_nav',{is_show:show}]" @mouseover="showNav" @mouseleave="removeNav">
         <div class="hover_width">
           <div class="list">
             <ul v-for="(ul,i) in 5 " :key="i">
@@ -40,15 +40,15 @@
     <!-- 轮播图与新闻 -->
     <div class="wrap1">
       <div class="swipe">
-        <swiper :options="swipeOptions">
+        <swiper :options="swipeOptions" @slideChange="changeSwipe">
           <swiper-slide v-for="(item, i) in swipeList" :key="i"><img :src="item.src" /></swiper-slide>
         </swiper>
         <div class="tabs">
-          <span :class="['tab',{selected:selactedNum==0}]" @mouseover="tabSwipe(0)">精选限定皮肤限时销售</span>
-          <span :class="['tab',{selected:selactedNum==1}]" @mouseover="tabSwipe(1)">2021幸运一夏</span>
-          <span :class="['tab',{selected:selactedNum==2}]" @mouseover="tabSwipe(2)">LPL今日赛程</span>
-          <span :class="['tab',{selected:selactedNum==3}]" @mouseover="tabSwipe(3)">S11城市发布</span>
-          <span :class="['tab',{selected:selactedNum==4}]" @mouseover="tabSwipe(4)">阿丽卡的黑金商店</span>
+          <span :class="['tab',{selected:selactedNum==0}]">精选限定皮肤限时销售</span>
+          <span :class="['tab',{selected:selactedNum==1}]">LPL今日赛程</span>
+          <span :class="['tab',{selected:selactedNum==2}]">S11城市发布</span>
+          <span :class="['tab',{selected:selactedNum==3}]">阿丽卡的黑金商店</span>
+          <span :class="['tab',{selected:selactedNum==4}]">2021幸运一夏</span>
         </div>
       </div>
       <div class="news">
@@ -62,20 +62,20 @@
         <div class="list">
           <ul>
             <li class="first">2021英雄联盟全球总决赛举办城市公布</li>
-            <li class="common" v-for="(item,i) in allList" :key="i" v-show="newTab==0">
-              <div class="title"><span :class="['type', `type_${item.type}`]">{{item.typaName}}</span>{{item.data}}</div><span class="time">{{item.timeS}}</span>
+            <li class="common" v-for="(item,i) in allList" :key="`all${i}`" v-show="newTab==0">
+              <div class="title"><span :class="['type', `type_${item.type}`]">{{item.typaName}}</span>{{item.data}}</div><span class="time">{{item.time}}</span>
             </li>
-            <li class="common" v-for="(item,i) in newList" :key="i" v-show="newTab==1">
-              <div class="title"><span :class="['type', `type_${item.type}`]">{{item.typaName}}</span>{{item.data}}</div><span class="time">{{item.timeS}}</span>
+            <li class="common" v-for="(item,i) in newList" :key="`new${i}`" v-show="newTab==1">
+              <div class="title"><span :class="['type', `type_${item.type}`]">{{item.typaName}}</span>{{item.data}}</div><span class="time">{{item.time}}</span>
             </li>
-            <li class="common" v-for="(item,i) in videoList" :key="i" v-show="newTab==2">
-              <div class="title"><span :class="['type', `type_${item.type}`]">{{item.typaName}}</span>{{item.data}}</div><span class="time">{{item.timeS}}</span>
+            <li class="common" v-for="(item,i) in videoList" :key="`video${i}`" v-show="newTab==2">
+              <div class="title"><span :class="['type', `type_${item.type}`]">{{item.typaName}}</span>{{item.data}}</div><span class="time">{{item.time}}</span>
             </li>
-            <li class="common" v-for="(item,i) in teachList" :key="i" v-show="newTab==3">
-              <div class="title"><span :class="['type', `type_${item.type}`]">{{item.typaName}}</span>{{item.data}}</div><span class="time">{{item.timeS}}</span>
+            <li class="common" v-for="(item,i) in teachList" :key="`teach${i}`" v-show="newTab==3">
+              <div class="title"><span :class="['type', `type_${item.type}`]">{{item.typaName}}</span>{{item.data}}</div><span class="time">{{item.time}}</span>
             </li>
-            <li class="common" v-for="(item,i) in noticeList" :key="i" v-show="newTab==4">
-              <div class="title"><span :class="['type', `type_${item.type}`]">{{item.typaName}}</span>{{item.data}}</div><span class="time">{{item.timeS}}</span>
+            <li class="common" v-for="(item,i) in noticeList" :key="`notice${i}`" v-show="newTab==4">
+              <div class="title"><span :class="['type', `type_${item.type}`]">{{item.typaName}}</span>{{item.data}}</div><span class="time">{{item.time}}</span>
             </li>
           </ul>
           <div class="more">阅读更多</div>
@@ -90,9 +90,9 @@
             <h2>热门活动</h2>
             <div class="tabs">
               <ul>
-                <li>正在进行</li>
-                <li>商城特惠</li>
-                <li>长期活动</li>
+                <li :class="{secected:hotTab==0}" @mouseover="tabHot(0)">正在进行</li>
+                <li :class="{secected:hotTab==1}" @mouseover="tabHot(1)">商城特惠</li>
+                <li :class="{secected:hotTab==2}" @mouseover="tabHot(2)">长期活动</li>
               </ul>
               <div class="more">更多</div>
             </div>
@@ -101,7 +101,7 @@
         <div class="list">
           <div class="item" v-for="(item, i) in 4" :key="i">
             <div class="imgs" :style="{backgroundImage:'url('+$imgsrc+'hot_item.jpg)'}"></div>
-            <p class="item_name">寻找破败的起源</p>
+            <p class="item_name">寻找破败的起源{{hotTab+1}}</p>
             <p class="item_time">长期活动</p>
           </div>
         </div>
@@ -142,7 +142,18 @@
             <p class="title">泳池派对</p>
             <p class="msg">心随海浪 畅享阳光</p>
           </div>
+          <!-- two的hover视频区 -->
+          <div class="video_box">
+            <video-player class="video-player vjs-custom-skin" ref="videoPlayer" :playsinline="true" :options="playerOptions">
+            </video-player>
+            <div class="info">
+              <p class="name">泳池派对</p>
+              <p class="msg">心随海浪 畅享阳光</p>
+              <button class="btn">查看详情</button>
+            </div>
+          </div>
         </div>
+
       </div>
       <div class="update_right">
         <div class="version">
@@ -188,12 +199,12 @@
             <h2>最新视频</h2>
             <div class="tabs">
               <ul>
-                <li>推荐</li>
-                <li>官方</li>
-                <li>娱乐</li>
-                <li>赛事</li>
-                <li>云顶之弈</li>
-                <li>教学</li>
+                <li :class="{selected:videoTab==0}" @mouseover="tabVideo(0)">推荐</li>
+                <li :class="{selected:videoTab==1}" @mouseover="tabVideo(1)">官方</li>
+                <li :class="{selected:videoTab==2}" @mouseover="tabVideo(2)">娱乐</li>
+                <li :class="{selected:videoTab==3}" @mouseover="tabVideo(3)">赛事</li>
+                <li :class="{selected:videoTab==4}" @mouseover="tabVideo(4)">云顶之弈</li>
+                <li :class="{selected:videoTab==5}" @mouseover="tabVideo(5)">教学</li>
               </ul>
               <div class="other">
                 <span class="next">下一页<i class="iconfont">&#xe60e;</i></span>
@@ -204,7 +215,7 @@
           <div class="list">
             <div class="item" v-for="(item ,i ) in 8" :key="i">
               <img :src="$imgsrc+'lol_ver_two_hover.jpg'">
-              <p class="title">凯隐的大躲一个控制，就是我们反杀的机会，骚年快锻炼你的手速吧</p>
+              <p class="title">{{videoTab+1}}凯隐的大躲一个控制，就是我们反杀的机会，骚年快锻炼你的手速吧</p>
               <div class="play">
                 <span class="play_times">20次播放</span>
                 <span class="play_time">39分钟前</span>
@@ -217,21 +228,20 @@
             <h2>热门专辑</h2>
             <div class="tabs">
               <ul>
-                <li>周一</li>
-                <li>周二</li>
-                <li>周三</li>
-                <li>周四</li>
-                <li>周五</li>
-                <li>周六</li>
-                <li>周日</li>
-
+                <li :class="{selected:dayTab==0}" @mouseover="tabDay(0)">周一</li>
+                <li :class="{selected:dayTab==1}" @mouseover="tabDay(1)">周二</li>
+                <li :class="{selected:dayTab==2}" @mouseover="tabDay(2)">周三</li>
+                <li :class="{selected:dayTab==3}" @mouseover="tabDay(3)">周四</li>
+                <li :class="{selected:dayTab==4}" @mouseover="tabDay(4)">周五</li>
+                <li :class="{selected:dayTab==5}" @mouseover="tabDay(5)">周六</li>
+                <li :class="{selected:dayTab==6}" @mouseover="tabDay(6)">周日</li>
               </ul>
             </div>
           </div>
           <div class="list">
             <div class="item" v-for="(item,i) in 3" :key="i">
               <img class="photo" :src="$imgsrc+'video_swipe.png'">
-              <p class="msg">巅峰top5是一档精彩英雄联盟赛事集锦节目，为广大玩家带来每日LPL比赛精彩镜头</p>
+              <p class="msg">{{dayTab+1}}巅峰top5是一档精彩英雄联盟赛事集锦节目，为广大玩家带来每日LPL比赛精彩镜头</p>
               <div class="user">
                 <div class="face" :style="{backgroundImage:'url('+$imgsrc+'user.jpg)'}"></div>
                 <span class="name">LOL解说小鱼</span>
@@ -296,6 +306,7 @@
         </div>
       </div>
     </footer>
+    <!-- 测试视频播放 -->
   </div>
 </template>
 <style scoped lang="less">
@@ -640,7 +651,6 @@
             justify-content: space-between;
             align-items: flex-end;
             height: 35px;
-
             ul {
               overflow: hidden;
               vertical-align: text-bottom;
@@ -652,13 +662,18 @@
                 text-align: center;
                 cursor: pointer;
               }
-              li:hover {
+              .secected {
                 color: #1da6ba;
                 font-size: 18px;
+                border-bottom: 2px solid #1da6ba;
               }
             }
-          }
-          .more {
+            .more {
+              cursor: pointer;
+            }
+            .more:hover {
+              color: #1da6ba;
+            }
           }
         }
       }
@@ -746,7 +761,8 @@
     position: relative;
     width: 1358px;
     margin: 0 auto;
-    height: 254px;
+    // height: 254px;
+    height: 292px;
     margin-top: 50px;
     .update_left {
       width: 820px;
@@ -814,15 +830,74 @@
           }
         }
       }
+
       .two {
         float: right;
+        position: relative;
+        // 视频hover区
+        .video_box {
+          width: 435px;
+          height: 308px;
+          display: none;
+          position: absolute;
+          top: -34px;
+          left: -8px;
+          /deep/.video-player {
+            width: 435px;
+            height: 244px;
+          }
+          .info {
+            width: 435px;
+            height: 65px;
+            background-color: #fff;
+            position: relative;
+            .name {
+              height: 30px;
+              overflow: hidden;
+              line-height: 30px;
+              box-sizing: border-box;
+              padding-left: 11px;
+              color: #0b0b0b;
+              font-size: 16px;
+            }
+            .msg {
+              height: 20px;
+              overflow: hidden;
+              line-height: 20px;
+              box-sizing: border-box;
+              padding-left: 11px;
+              color: #a1a1a2;
+              font-size: 12px;
+              text-align: left;
+              margin-bottom: 10px;
+            }
+            .btn {
+              position: absolute;
+              right: 10px;
+              cursor: pointer;
+              bottom: 17px;
+              width: 86px;
+              height: 29px;
+              line-height: 27px;
+              overflow: hidden;
+              color: #bb9a6c;
+              font-size: 14px;
+              text-align: center;
+              box-sizing: border-box;
+              border: 1px #bb9a6c solid;
+              -webkit-transition: background-color 0.2s;
+              transition: background-color 0.2s;
+            }
+            .btn:hover {
+              background-color: #bb9a6c;
+              color: #fff;
+            }
+          }
+        }
       }
-      .two::after {
-        content: "";
-        height: 0;
-        visibility: hidden;
+
+      .two:hover .video_box {
         display: block;
-        clear: both;
       }
       .one:hover .cover {
         display: none;
@@ -1007,6 +1082,11 @@
                 clear: both;
                 height: 0;
               }
+              .selected {
+                font-weight: 700;
+                color: #1da6ba;
+                border-bottom: 2px solid #1da6ba;
+              }
             }
             .other {
               font-size: 12px;
@@ -1129,6 +1209,11 @@
                 font-size: 16px;
                 color: #676767;
                 cursor: pointer;
+              }
+              .selected {
+                font-weight: 700;
+                color: #1da6ba;
+                border-bottom: 2px solid #1da6ba;
               }
             }
           }
@@ -1376,11 +1461,14 @@ import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import "swiper/swiper-bundle.min.css";
 import SwiperCore, { Autoplay, Navigation } from "swiper";
 SwiperCore.use([Navigation, Autoplay]);
+import { videoPlayer } from "vue-video-player";
+import "video.js/dist/video-js.css";
 
 export default {
   components: {
     Swiper,
     SwiperSlide,
+    videoPlayer,
   },
   data() {
     return {
@@ -1396,20 +1484,10 @@ export default {
       newTab: 0, //新闻的tab
       swipeOptions: {
         slidesPerView: "auto", //默认1, 同时显示的slides数量,auto 代表根据轮播图的宽度排列
-        grabCursor: true,
-        centeredSlides: true,
-        autoplay: true,
+        grabCursor: true, //鼠标在swipe上变成手的形状
+        centeredSlides: true, //活动块居中，默认为左
+        autoplay: true, //延迟滚动，为true时默认三秒
         loop: true, //循环滚动
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-        on: {
-          slideChange: function () {
-            // this.selactedNum = this.activeIndex / 2;
-            // console.log(this.selactedNum);
-          },
-        },
       },
       newList: [
         {
@@ -1567,7 +1645,7 @@ export default {
         {
           type: "teach",
           typaName: "教学",
-          data: "弈图道破：天使坠落恶魔永生！版本最强吃鸡率套路恶魔九五！",
+          data: "弈图道破：天使坠落恶魔永生！版本最强吃鸡率套路恶魔九五！最强吃鸡率套路恶魔九五！",
           time: "05-09",
         },
         {
@@ -1597,25 +1675,61 @@ export default {
           time: "03-19",
         },
       ],
+      hotTab: 0, //热门活动的tab
+      videoTab: 0, //视频的tab
+      dayTab: 0, //日期的tab
+      playerOptions: {
+        playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
+        autoplay: false, //如果true,浏览器准备好时开始回放。
+        muted: false, // 默认情况下将会消除任何音频。
+        loop: false, // 导致视频一结束就重新开始。
+        preload: "auto", // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
+        language: "zh-CN",
+        aspectRatio: "16:9", // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+        fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
+        sources: [
+          {
+            type: "video/mp4",
+            src: "http://tm.lilanz.com/QYWX/Test/LMTest/assets/video/testVideo.mp4", //视频url地址
+          },
+        ],
+        poster: this.$imgsrc + "update2.jpg", //你的封面地址
+        notSupportedMessage: "此视频暂无法播放，请稍后再试", //允许覆盖Video.js无法播放媒体源时显示的默认信息。
+        controlBar: {
+          timeDivider: true,
+          durationDisplay: true,
+          remainingTimeDisplay: false,
+          fullscreenToggle: true, //全屏按钮
+        },
+      },
     };
   },
   methods: {
-    onSwiper(num) {
-      console.log("哈哈哈");
-      console.log(num);
-    },
-    chage(num) {
-      console.log("slideChange");
-      console.log(num);
+    changeSwipe(swipe) {
+      this.selactedNum = document
+        .getElementsByClassName("swiper-slide-active")[0]
+        .getAttribute("data-swiper-slide-index");
     },
     // swipe的hover筛选数据
     tabSwipe(num) {
-      console.log("监听" + num);
       this.selactedNum = num;
     },
     // 新闻的hover筛选数据
     tabNew(num) {
       this.newTab = num;
+    },
+    // 视频的video
+    tabVideo(num) {
+      this.videoTab = num;
+    },
+    // 日期的tab
+    tabDay(num) {
+      this.dayTab = num;
+    },
+    // 热门活动的hover
+    tabHot(num) {
+      console.log(num);
+      this.hotTab = num;
     },
     // 展示hover列表
     showNav() {

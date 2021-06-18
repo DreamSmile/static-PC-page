@@ -9,6 +9,7 @@ const safe = r => require.ensure([], () => r(require('@/views/safe/Index')), 'sa
 const game = r => require.ensure([], () => r(require('@/views/game/Index')), 'game');
 const lol = r => require.ensure([], () => r(require('@/views/lol/Index')), 'lol');
 
+const test = r => require.ensure([], () => r(require('@/views/test/Index')), 'test');
 
 
 Vue.use(VueRouter)
@@ -42,6 +43,10 @@ const routes = [
     path: '/lol',
     name: 'Lol',
     component: lol
+  }, {
+    path: '/test',
+    name: 'Test',
+    component: test
   }
 ]
 
