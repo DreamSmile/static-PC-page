@@ -39,6 +39,7 @@
         <li @click="go('home')">top</li>
       </ul>
     </div>
+    
     <!-- 背景大图 -->
     <div class="bg_01" :style="{ backgroundImage: 'url(' + $imgsrc + 'bg_01.jpg)' }"></div>
     <!-- 新闻资讯 -->
