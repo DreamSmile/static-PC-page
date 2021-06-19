@@ -261,7 +261,7 @@
             <span>更多</span>
           </div>
           <ul>
-            <li :style="{backgroundImage:'url('+$imgsrc+'lol_create.jpg'}" v-for="(item,i ) in 8" :key="i">
+            <li :style="{backgroundImage:'url('+$imgsrc+'lol_create.jpg)'}" v-for="(item,i ) in 8" :key="i">
               <div class="cover">
                 <p class="list_tite">画了一只阿狸头像</p>
                 <div class="info">

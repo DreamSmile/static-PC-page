@@ -86,12 +86,12 @@
           </ul>
         </div>
       </div>
-      <div class="code" :style="{ backgroundImage: 'url(' + $imgsrc + 'qr-bg.jpg)' }">
+      <div class="code" :style="{ backgroundImage: 'url(' + $imgsrc + 'qr-bg.jpeg)' }">
         <img class="code_img" :src="$imgsrc + 'qr-code.png'" />
       </div>
     </div>
     <!-- 轮播图三格 -->
-    <div id="section2" class="swipe" :style="{ backgroundImage: 'url(' + $imgsrc + 'bg_03.jpg' }">
+    <div id="section2" class="swipe" :style="{ backgroundImage: 'url(' + $imgsrc + 'bg_03.jpg)' }">
       <!-- <div class="img_box">
         <img :src="preImg" class="pre" />
         <img :src="selImg" class="sel" />
@@ -113,13 +113,13 @@
 
     </div>
     <!-- 轮播图平滑 -->
-    <div id="section3" class="swipe1" :style="{ backgroundImage: 'url(' + $imgsrc + 'bg_04.jpg' }">
+    <div id="section3" class="swipe1" :style="{ backgroundImage: 'url(' + $imgsrc + 'bg_04.jpg)' }">
       <swiper ref="mySwiper" :options="swipeOp">
         <swiper-slide v-for="(item, i) in swipeList1" :key="i"><img :src="item.src" /></swiper-slide>
       </swiper>
     </div>
     <!-- 游戏攻略 -->
-    <div id="section4" class="strategy" :style="{ backgroundImage: 'url(' + $imgsrc + 'bg_05.jpg' }">
+    <div id="section4" class="strategy" :style="{ backgroundImage: 'url(' + $imgsrc + 'bg_05.jpg)' }">
       <div class="content">
         <div class="con_left">
           <div class="title">
@@ -169,7 +169,7 @@
       </div>
     </div>
     <!-- 同人站 -->
-    <div id="section5" class="fellow" :style="{ backgroundImage: 'url(' + $imgsrc + 'bg_06.jpg' }">
+    <div id="section5" class="fellow" :style="{ backgroundImage: 'url(' + $imgsrc + 'bg_06.jpg)' }">
       <div class="content">
         <div class="f_left">
           <div class="title">
@@ -177,7 +177,7 @@
             <i class="iconfont">&#xe84f;</i>
           </div>
           <div class="box">
-            <div class="item" v-for="(item, i) in 4" :key="i" :style="{ backgroundImage: 'url(' + $imgsrc + '0.png' }">
+            <div class="item" v-for="(item, i) in 4" :key="i" :style="{ backgroundImage: 'url(' + $imgsrc + '0.png)' }">
               <span>《奇迹暖暖》创意视频创意视频创意视频</span>
             </div>
           </div>
@@ -188,10 +188,10 @@
             <i class="iconfont">&#xe84f;</i>
           </div>
           <div class="box">
-            <div class="imgs" :style="{ backgroundImage: 'url(' + $imgsrc + '0.png' }">
+            <div class="imgs" :style="{ backgroundImage: 'url(' + $imgsrc + '0.png)' }">
               <span>[漫画]奇迹暖暖漫画漫画</span>
             </div>
-            <div class="imgs" :style="{ backgroundImage: 'url(' + $imgsrc + '0.png' }">
+            <div class="imgs" :style="{ backgroundImage: 'url(' + $imgsrc + '0.png)' }">
               <span>[漫画]奇迹暖暖漫画漫画</span>
             </div>
             <ul>

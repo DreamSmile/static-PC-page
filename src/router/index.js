@@ -10,6 +10,7 @@ const game = r => require.ensure([], () => r(require('@/views/game/Index')), 'ga
 const lol = r => require.ensure([], () => r(require('@/views/lol/Index')), 'lol');
 
 const test = r => require.ensure([], () => r(require('@/views/test/Index')), 'test');
+const testJS = r => require.ensure([], () => r(require('@/views/testJS/Index')), 'testJS');
 
 
 Vue.use(VueRouter)
@@ -47,6 +48,10 @@ const routes = [
     path: '/test',
     name: 'Test',
     component: test
+  }, {
+    path: '/testJS',
+    name: 'TestJS',
+    component: testJS
   }
 ]
 

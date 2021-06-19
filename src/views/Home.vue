@@ -5,6 +5,7 @@
     <button class="btn" @click="go('safe')">保险官网</button>
     <button class="btn" @click="go('game')">奇迹暖暖官网</button>
     <button class="btn" @click="go('lol')">英雄联盟</button>
+    <button class="btn" @click="go('testJS')">测试js</button>
   </div>
 </template>
 <style scoped lang="less">
