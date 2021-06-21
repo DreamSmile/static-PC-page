@@ -24,7 +24,6 @@
       <img-el></img-el>
       <p>drag</p>
       <drag-img></drag-img>
-      <!-- <img :src="$imgsrc+'default.png'" class="move" @mouseover="startMouse" /> -->
     </div>
   </div>
 </template>
