@@ -11,6 +11,7 @@ const lol = r => require.ensure([], () => r(require('@/views/lol/Index')), 'lol'
 
 const test = r => require.ensure([], () => r(require('@/views/test/Index')), 'test');
 const testJS = r => require.ensure([], () => r(require('@/views/testJS/Index')), 'testJS');
+const testArr = r => require.ensure([], () => r(require('@/views/testJS/TestArr')), 'tsetArr');
 
 
 Vue.use(VueRouter)
@@ -52,6 +53,10 @@ const routes = [
     path: '/testJS',
     name: 'TestJS',
     component: testJS
+  }, {
+    path: '/testArr',
+    name: 'TestArr',
+    component: testArr
   }
 ]
 
